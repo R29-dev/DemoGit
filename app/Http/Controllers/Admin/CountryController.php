@@ -57,9 +57,10 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $data= country::all()->toArray();
+        return view('admin.profile',compact('data'));
     }
     
     /**

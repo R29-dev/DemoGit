@@ -39,6 +39,7 @@ Route::post('/admin/country/add', [App\Http\Controllers\Admin\CountryController:
 Route::get('/admin/country/edit/{id}', [App\Http\Controllers\Admin\CountryController::class, 'getupdate']);
 Route::post('/admin/country/edit/{id}', [App\Http\Controllers\Admin\CountryController::class, 'update']);
 Route::get('/admin/country/delete/{id}', [App\Http\Controllers\Admin\CountryController::class, 'destroy']);
+Route::get('/admin/edit', [App\Http\Controllers\Admin\CountryController::class, 'edit']);
 
 
 
@@ -55,6 +56,23 @@ Route::get('/admin/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController
 
 
 
+
+
+
+
+
+
+Route::get('/Frontend/app', function () {
+    return view('Frontend.layouts.app');
+});
+Route::get('/Frontend/login', function () {
+    return view('Frontend.user.login');
+});
+Route::get('/Frontend/register', function () {
+    return view('Frontend.user.register');
+});
+Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create']);
+Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login']);
 
 
 

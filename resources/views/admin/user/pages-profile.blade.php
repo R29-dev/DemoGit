@@ -106,13 +106,13 @@
                         <div class="form-group">
                             <label class="col-sm-12">Select Country</label>
                             <div class="col-sm-12">
+                               
                                 <select class="form-control form-control-line">
-                                    <option>London</option>
-                                    <option>India</option>
-                                    <option>Usa</option>
-                                    <option>Canada</option>
-                                    <option>Thailand</option>
+                                    @foreach ($data as $item)
+                                        <option value="{{ $item["id"] }}">{{ $item["name"] }}</option>
+                                    @endforeach
                                 </select>
+                               
                             </div>
                         </div>
                         <div class="form-group">

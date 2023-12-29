@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Country;
+
 use App\Http\Requests\UpdateProfileRequest;
 
 class UserController extends Controller
@@ -43,9 +45,11 @@ class UserController extends Controller
      */
     public function show()
     {
+      
         $users = Auth::user();
-
-        return view('admin.user.pages-profile', compact('users'));
+        $data= country::all()->toArray();
+        return view('admin.user.pages-profile', compact('users','data'));
+        
 
     }
 
@@ -55,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
     }
 
     /**

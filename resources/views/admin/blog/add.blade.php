@@ -51,14 +51,9 @@
                                 <p>{{ $message }}</p>
                             @enderror
                                 <br>
-                         {{-- <label>Description</label >       
-                            
-                        <textarea class="form-control editor1" id="editor1"   >
-                            
-                        </textarea>
-                        @error('Description')
-                        <p>{{ $message }}</p>
-                    @enderror --}}
+                            <label>Content</label>
+                            <Textarea class="form-control" name="Content" id="Content" value=""></Textarea>
+                                   
                     </div>
                     <input class="btn btn-success ml-2 text-white" fdprocessedid="83u3rf" value="Add Blog" type="submit" >
                  </form>

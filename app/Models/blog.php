@@ -14,7 +14,8 @@ class blog extends Model
        'id',
        'Title',
        'Image',
-       'Description'
+       'Description',
+       'Content'
        
     ];
 

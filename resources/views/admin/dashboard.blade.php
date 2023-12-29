@@ -102,19 +102,23 @@
     <script src=" {{ asset('admin/assets/libs/chartist/dist/chartist.min.js') }}"></script>
     <script src=" {{ asset('admin/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
     <script src=" {{ asset('admin/dist/js/pages/dashboards/dashboard1.js') }}"></script>
-    {{-- <script src="{{asset('ckeditor/ckeditor.js')}}"></script> --}}
+    {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replace('Content'); </script> --}}
 
-{{-- <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( 'textarea[name="Description"]' ) )
+        .create( document.querySelector( 'textarea[name="Content"]' ) )
         .then( editor => {
             console.log( editor );
         } )
         .catch( error => {
             console.error( error );
         } );
-</script> --}}
+</script>
 </body>
 
 </html>

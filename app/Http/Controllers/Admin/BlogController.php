@@ -82,7 +82,7 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request)
+   public function update(BlogRequest $request)
 {
     $blog = Blog::find($request->id);
     $data = $request->all();

@@ -35,7 +35,7 @@
                     <div class="form-group">
                         {{-- <input type="hidden" name="id" value="{{ $data['id'] }}"> --}}
                         <label>Title</label >
-                        <input type="text" placeholder="Title" name="Title"  class="form-control" value="{{ $data['Title'] }}">
+                        <input type="text" placeholder="Title" name="Title"  class="form-control" value="{{  old('Title', $data['Title']) }}">
                         @error('Title')
                             <p>{{ $message }}</p>
                         @enderror
@@ -56,14 +56,10 @@
                                 <p>{{ $message }}</p>
                             @enderror
                                 <br>
-                         {{-- <label>Description</label >       
-                            
-                        <textarea class="form-control editor1" id="editor1"   >
-                            
-                        </textarea>
-                        @error('Description')
-                        <p>{{ $message }}</p>
-                    @enderror --}}
+                                <label>Content</label>
+                                <Textarea class="form-control" name="Content" id="Content" >
+                                    {!! $data['Content'] !!}
+                                </Textarea>
                     </div>
                     <input class="btn btn-success ml-2 text-white" fdprocessedid="83u3rf" value="Update Blog" type="submit" >
                  </form>
