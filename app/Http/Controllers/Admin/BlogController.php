@@ -19,6 +19,9 @@ class BlogController extends Controller
         $data = blog::all()->toArray();
         return view('admin.blog.list', compact('data'));
     }
+    public function indexfr(){
+        
+    }
     public function getadd()
     {
         return view('admin.blog.add');

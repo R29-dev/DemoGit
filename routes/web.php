@@ -70,11 +70,26 @@ Route::get('/Frontend/login', function () {
 });
 Route::get('/Frontend/register', function () {
     return view('Frontend.user.register');
+    
 });
+// Route::get('/Frontend/blog', function () {
+//     return view('Frontend.user.blog');
+    
+// });
+Route::get('/Frontend/blog/{{id}}', function () {
+    return view('Frontend.user.blog-detail');
+    
+});
+
 Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create']);
 Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login']);
 
 
+
+
+
+Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index']);
+Route::get('/Frontend/blog/{id}', [App\Http\Controllers\Frontend\BlogController::class, 'blog_detail']);
 
 
 
