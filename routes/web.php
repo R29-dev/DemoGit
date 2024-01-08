@@ -90,6 +90,13 @@ Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::cl
 
 Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index']);
 Route::get('/Frontend/blog/{id}', [App\Http\Controllers\Frontend\BlogController::class, 'blog_detail']);
+Route::post('/Frontend/blog/rate', [App\Http\Controllers\Frontend\BlogController::class, 'create'])->name("rate");
+Route::get('/Frontend/blog/getRate', [App\Http\Controllers\Frontend\BlogController::class, 'getrate'])->name("getRate");
+
+
+
+
+
 
 
 

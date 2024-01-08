@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        
     } /**
       
 
@@ -57,6 +57,7 @@ class UserController extends Controller
         }
         if (Auth::attempt($login, $remember)) {
             return redirect('/Frontend');
+           
         } else {
             return redirect()->back()->withErrors(['loginError' => 'Email or password is not correct.']);
         }
