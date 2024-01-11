@@ -26,19 +26,25 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head><!--/head-->
 
 <body>
+  
+    
+
+
     @include('Frontend.layouts.header')
 
-    @include('Frontend.layouts.slide')
+   
 
     <section>
         <div class="container">
             <div class="row">
-                @include('Frontend.layouts.menu-left')
+                
+                 
+                 @include('Frontend.layouts.menu-left')
 
                 <div class="col-sm-9 padding-right">
                     @yield('content')

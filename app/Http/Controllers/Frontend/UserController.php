@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view("Frontend.home.index");
     }
 
     /**
@@ -56,11 +56,15 @@ class UserController extends Controller
             $remember = true;
         }
         if (Auth::attempt($login, $remember)) {
-            return redirect('/Frontend');
+            return redirect()->route('index');
            
         } else {
             return redirect()->back()->withErrors(['loginError' => 'Email or password is not correct.']);
         }
+    }
+    public function logout(){
+      Auth::logout();
+      return redirect()->route('login');
     }
 
     /**

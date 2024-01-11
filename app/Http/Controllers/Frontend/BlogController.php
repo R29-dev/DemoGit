@@ -8,6 +8,7 @@ use App\Models\blog;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\rate;
+use App\Models\cmt;
 use DB;
 
 class BlogController extends Controller
@@ -32,36 +33,34 @@ class BlogController extends Controller
     public function blog_detail(string $id)
     {
         $data = blog::find($id)->toArray();
-        $data['rate'] = "";
 
 
-        if (Auth::check()) {
-            $id_user = Auth::id();
-            $latestRate = Rate::where('id_blog', $id)
-                ->where('id_user', $id_user)
-                ->latest('created_at')
-                ->first()->toArray();
-          
-         
-           $data['rate']=$latestRate['rate'];
-
-
-
-            
+        $latestRate = Rate::where('id_blog', $id)->get()->toArray();
+        // $rates = $latestRate['rate'];
+        $rates = array_column($latestRate, 'rate');
+        $averageRate = round( array_sum($rates) / count($rates));
+        // blog cmt
+        $cmt= cmt::where('id_blog', $id)->get()->toArray();
+       
+        return view('Frontend.blog.blog-detail', compact('data','averageRate','cmt'));
+        
+    }
+    public function blog_comment(Request $request){
+        $data = $request->all();
+        if (cmt::create($data)) {
+            return response()->json('Bình luận thành công', 200);
+        } else {
+            return response()->json('Bình luận thất bại !', 500);
         }
-
-
-
-        return view('Frontend.blog.blog-detail', compact('data'));
     }
 
-//    
-    
+    //    
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function rate(Request $request)
     {
         $data = $request->all();
         if (rate::create($data)) {
