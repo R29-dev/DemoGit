@@ -10,6 +10,7 @@ use App\Models\Country;
 
 use App\Http\Requests\UpdateProfileRequest;
 
+
 class UserController extends Controller
 {
     public function __construct()
@@ -52,6 +53,7 @@ class UserController extends Controller
         
 
     }
+    
 
 
     /**

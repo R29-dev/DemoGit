@@ -7,9 +7,8 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use  App\Http\Requests\MemberRequest;
-
-
-
+use App\Models\category;
+use App\Models\brand;
 class MemberController extends Controller
 {
     /**
@@ -31,6 +30,105 @@ class MemberController extends Controller
     {
         return view('Frontend.member.my-product');
     }
+   
+
+    public function indexcategory()
+    {
+        $data= category::all()->toArray();
+        return view('Frontend.category.list',compact('data'));
+    }
+
+
+
+
+
+    public function getadd()
+    {
+        return view('Frontend.category.add');
+    }
+    public function postadd(Request $request){
+        $data= $request->all();
+       if(category::create($data)){
+        return redirect('/Frontend/account/category')->with('success', ('success.'));
+       }
+       else{
+        'thất bại';
+       }
+    }
+
+
+    public function getupdatecategory(string $id){
+        $data=category::find($id)->toArray();
+        // dd($data);
+        return view('Frontend.category.edit', compact('data'));
+    }
+
+    
+    public function postupdatecategory(Request $request)
+    {
+     $category = category::find($request->id);
+     $data=$request->all();   
+     if($category->update($data)){
+        return redirect('/Frontend/account/category')->with('success', ('success.'));
+       }
+       else{
+        'thất bại';
+       }
+    }
+
+
+    public function destroycategory(string $id){
+        category::destroy($id);
+        return redirect('/Frontend/account/category')->with('success', ('success.'));
+    }
+
+
+
+
+
+
+
+    public function indexbrand()
+    {
+        $data= brand::all()->toArray();
+        return view('Frontend.brand.list',compact('data'));
+    }
+
+    public function getaddbrand()
+    {
+        return view('Frontend.brand.add');
+    }
+    public function postaddbrand(Request $request){
+        $data= $request->all();
+       if(brand::create($data)){
+        return redirect('/Frontend/account/brand')->with('success', ('success.'));
+       }
+       else{
+        'thất bại';
+       }
+    }
+    public function getupdatebrand(string $id){
+        $data=brand::find($id)->toArray();
+        // dd($data);
+        return view('Frontend.brand.edit', compact('data'));
+    }
+    public function postupdatebrand(Request $request)
+    {
+     $brand = brand::find($request->id);
+     $data=$request->all();   
+     if($brand->update($data)){
+        return redirect('/Frontend/account/brand')->with('success', ('success.'));
+       }
+       else{
+        'thất bại';
+       }
+    }
+    public function destroybrand(string $id){
+        brand::destroy($id);
+        return redirect('/Frontend/account/brand')->with('success', ('success.'));
+    }
+
+    
 
     /**
      * Show the form for creating a new resource.
