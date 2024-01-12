@@ -81,7 +81,7 @@ Route::get('/Frontend/blog/{{id}}', function () {
     return view('Frontend.user.blog-detail');
     
 });
-Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index']);
+Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index'])->name("index");
 Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create']);
 Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("login");
 Route::get('/Frontend/logout', [App\Http\Controllers\Frontend\UserController::class, 'logout'])->name("logout");
@@ -93,7 +93,7 @@ Route::get('/Frontend/logout', [App\Http\Controllers\Frontend\UserController::cl
 
 
 
-Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name("index");
+Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index']);
 Route::get('/Frontend/blog/{id}', [App\Http\Controllers\Frontend\BlogController::class, 'blog_detail']);
 Route::post('/Frontend/blog/rate', [App\Http\Controllers\Frontend\BlogController::class, 'rate'])->name("rate");
 Route::get('/Frontend/blog/getRate', [App\Http\Controllers\Frontend\BlogController::class, 'getrate'])->name("getRate");
@@ -120,5 +120,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'index'])->name("fr.account");
 Route::post('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'update'])->name("fr.account.post");
+Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\MemberController::class, 'product']);
+
 
 

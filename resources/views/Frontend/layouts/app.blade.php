@@ -44,8 +44,12 @@
             <div class="row">
                 
                  
+               
+                 @if (Str::contains(request()->path(), 'account'))
+                 @include('Frontend.layouts.slide')
+                 @else
                  @include('Frontend.layouts.menu-left')
-
+                 @endif
                 <div class="col-sm-9 padding-right">
                     @yield('content')
                 </div>

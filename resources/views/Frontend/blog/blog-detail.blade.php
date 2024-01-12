@@ -109,7 +109,7 @@
                 @if ($item['level'] == 0)
                     <li class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" style="width: 100px;" src="{{ $item['avatar'] }}" alt="">
+                            <img class="media-object" style="width: 100px;" src="{{ asset('/upload/user/avatar' . $item['avatar']) }}" alt="">
                         </a>
                         <div class="media-body">
                             <ul class="sinlge-post-meta">
@@ -126,7 +126,7 @@
                                     @if ($item1['level'] == $item['id'])
                                         <li class="media second-media">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object" style="width: 100px;" src="{{ $item['avatar'] }}"
+                                                <img class="media-object" style="width: 100px;" src="{{ asset('/upload/user/avatar' . $item['avatar']) }}"
                                                     alt="">
                                             </a>
                                             <div class="media-body">
@@ -165,7 +165,7 @@
                     </div>
                     <span>*</span>
                     <textarea name="message" rows="11"></textarea>
-                    <a class="btn btn-primary" id="0" href="">post comment</a>
+                    <a class="btn btn-primary" id="0" href="">Post comment</a>
                 </div>
             </div>
         </div>

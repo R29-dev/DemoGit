@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use  App\Http\Requests\MemberRequest;
+
+
 
 class MemberController extends Controller
 {
@@ -13,7 +16,9 @@ class MemberController extends Controller
      * Display a listing of the resource.
      */
 
-
+    public function __construct(){
+      $this->middleware('checklogin1');
+    }
     public function index()
     {
         $data = Auth::user()->toArray();
@@ -21,6 +26,10 @@ class MemberController extends Controller
         // dd($data);
         return view('Frontend.member.account', compact('data'));
 
+    }
+    public function product()
+    {
+        return view('Frontend.member.my-product');
     }
 
     /**
@@ -58,9 +67,41 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MemberRequest $request)
     {
-        //
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+        $data = $request->all();
+        
+        $file = $request->avatar;
+
+        if (!empty($file)) {
+            $data['avatar'] = $file->getClientOriginalName();
+        }
+
+        if ($data['password'] && $data['password'] == $data['password']) {
+            $data['password'] = bcrypt($data['password']);
+
+
+        } else {
+            $data['password'] = $user->password;
+        }
+
+
+
+        if ($user->update($data)) {
+            if (!empty($file)) {
+                $file->move('upload/user/avatar', $file->getClientOriginalName());
+            }
+            return redirect()->back()->with('success', ('Update profile success.'));
+        } else {
+            return redirect()->back()->withErrors('Update profile error.');
+
+        }
+        
+
+
+
     }
 
     /**
