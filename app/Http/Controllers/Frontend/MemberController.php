@@ -26,10 +26,6 @@ class MemberController extends Controller
         return view('Frontend.member.account', compact('data'));
 
     }
-    public function product()
-    {
-        return view('Frontend.member.my-product');
-    }
    
 
     

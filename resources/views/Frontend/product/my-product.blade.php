@@ -19,7 +19,7 @@
             
             <tr>
                 <td class="cart_product">
-                    <a href=""><img src="images/cart/one.png" alt=""></a>
+                    <a href=""><img src="{{ asset('frontend/images/cart/one.png') }}" alt=""></a>
                 </td>
                 <td class="cart_description">
                     <h4><a href="">Colorblock Scuba</a></h4>
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td class="cart_product">
-                    <a href=""><img src="images/cart/one.png" alt=""></a>
+                    <a href=""><img src="{{ asset('frontend/images/cart/one.png') }}" alt=""></a>
                 </td>
                 <td class="cart_description">
                     <h4><a href="">Colorblock Scuba</a></h4>
@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td class="cart_product">
-                    <a href=""><img src="images/cart/one.png" alt=""></a>
+                    <a href=""><img src="{{ asset('frontend/images/cart/one.png') }}" alt=""></a>
                 </td>
                 <td class="cart_description">
                     <h4><a href="">Colorblock Scuba</a></h4>
@@ -100,7 +100,7 @@
         </tbody>
     </table>
     <div style="text-align: right; margin: 10px">
-        <button style="background-color: #FE980F;font-size: 20px; border: 0;" > <a class="text-white"style="color: white;" href="add.php">Add New </a></button>
+        <button style="background-color: #FE980F;font-size: 20px; border: 0;" > <a class="text-white"style="color: white;" href="{{ url('Frontend/account/my-product/add') }}">Add New </a></button>
     </div>
 </div>
 @endsection

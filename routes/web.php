@@ -106,8 +106,8 @@ Route::get('/Frontend/blog/{{id}}', function () {
     
 });
 Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index'])->name("index");
-Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create']);
-Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("login");
+Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create'])->name("rg");
+Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("logins");
 Route::get('/Frontend/logout', [App\Http\Controllers\Frontend\UserController::class, 'logout'])->name("logout");
 
 
@@ -144,7 +144,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'index'])->name("fr.account");
 Route::post('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'update'])->name("fr.account.post");
-Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\MemberController::class, 'product']);
+
+
+
+
+Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\ProductController::class, 'index']);
+Route::get('/Frontend/account/my-product/add', [App\Http\Controllers\Frontend\ProductController::class, 'create']);
+Route::post('/Frontend/account/my-product/add', [App\Http\Controllers\Frontend\ProductController::class, 'store']);
+
+
+
 
 
 

@@ -4,12 +4,12 @@
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">account</a></h4>
+                    <h4 class="panel-title"><a href="{{ url('/Frontend/account') }}">account</a></h4>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">My product</a></h4>
+                    <h4 class="panel-title"><a href="{{ url('/Frontend/account/my-product') }}">My product</a></h4>
                 </div>
             </div>
             
