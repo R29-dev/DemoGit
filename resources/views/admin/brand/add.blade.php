@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.app')
+@extends('admin.dashboard')
 @section('content')
     <form method="post" class="form-horizontal m-t-30">
         @csrf

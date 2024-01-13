@@ -9,6 +9,9 @@ use App\Models\User;
 use App\Models\Country;
 
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\category;
+use App\Models\brand;
+
 
 
 class UserController extends Controller

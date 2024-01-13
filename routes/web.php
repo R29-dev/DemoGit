@@ -43,6 +43,30 @@ Route::get('/admin/edit', [App\Http\Controllers\Admin\CountryController::class, 
 
 
 
+Route::get('/admin/category', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
+Route::get('/admin/category/add', [App\Http\Controllers\Admin\CategoryController::class, 'getadd']);
+Route::post('/admin/category/add', [App\Http\Controllers\Admin\CategoryController::class, 'postadd']);
+Route::get('/admin/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'getupdate']);
+Route::post('/admin/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'postupdate']);
+Route::get('/admin/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+
+
+
+Route::get('/admin/brand', [App\Http\Controllers\Admin\BrandController::class, 'index']);
+Route::get('/admin/brand/add', [App\Http\Controllers\Admin\BrandController::class, 'getadd']);
+Route::post('/admin/brand/add', [App\Http\Controllers\Admin\BrandController::class, 'postadd']);
+Route::get('/admin/brand/edit/{id}', [App\Http\Controllers\Admin\BrandController::class, 'getupdate']);
+Route::post('/admin/brand/edit/{id}', [App\Http\Controllers\Admin\BrandController::class, 'postupdate']);
+Route::get('/admin/brand/delete/{id}', [App\Http\Controllers\Admin\BrandController::class, 'destroy']);
+
+
+
+
+
+
+
+
+
 
 Route::get('/admin/blog', [App\Http\Controllers\Admin\BlogController::class, 'index']);
 Route::get('/admin/blog/add', [App\Http\Controllers\Admin\BlogController::class, 'getadd']);
@@ -125,22 +149,6 @@ Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\Member
 
 
 
-Route::get('/Frontend/account/category', [App\Http\Controllers\Frontend\MemberController::class, 'indexcategory']);
-Route::get('/Frontend/account/category/add', [App\Http\Controllers\Frontend\MemberController::class, 'getadd']);
-Route::post('/Frontend/account/category/add', [App\Http\Controllers\Frontend\MemberController::class, 'postadd']);
-
-Route::get('/Frontend/account/category/edit/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'getupdatecategory']);
-Route::post('/Frontend/account/category/edit/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'postupdatecategory']);
-Route::get('/Frontend/account/category/delete/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'destroycategory']);
-
-
-
-Route::get('/Frontend/account/brand', [App\Http\Controllers\Frontend\MemberController::class, 'indexbrand']);
-Route::get('/Frontend/account/brand/add', [App\Http\Controllers\Frontend\MemberController::class, 'getaddbrand']);
-Route::post('/Frontend/account/brand/add', [App\Http\Controllers\Frontend\MemberController::class, 'postaddbrand']);
-Route::get('/Frontend/account/brand/edit/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'getupdatebrand']);
-Route::post('/Frontend/account/brand/edit/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'postupdatebrand']);
-Route::get('/Frontend/account/brand/delete/{id}', [App\Http\Controllers\Frontend\MemberController::class, 'destroybrand']);
 
 
 
