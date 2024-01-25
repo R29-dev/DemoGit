@@ -59,17 +59,15 @@
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
-                            @if (Auth::check())
-                            <li><a href="{{ route('fr.account') }}"><i class="fa fa-user"></i> Account</a></li>
-                            @endif
+                            <li><a href="{{ url('/Frontend/account/profile') }}"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @if (Auth::check())
-                            <li><a href="{{ route('logout') }}"><i class="fa fa-shopping-cart"></i>
+                            <li><a href="{{ route('logouts') }}"><i class="fa fa-shopping-cart"></i>
                                     Logout</a></li>
                         @else
-                            <li><a href="{{ route('login') }}"><i class="fa fa-shopping-cart"></i> Login</a>
+                            <li><a href="{{ route('logins') }}"><i class="fa fa-shopping-cart"></i> Login</a>
                             </li>
                         @endif
                         </ul>
@@ -102,10 +100,10 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="cart.html">Cart</a></li>
                                     @if (Auth::check())
-                                        <li><a href="{{ route('logout') }}"><i class="fa fa-shopping-cart"></i>
+                                        <li><a href="{{ route('logouts') }}"><i class="fa fa-shopping-cart"></i>
                                                 Logout</a></li>
                                     @else
-                                        <li><a href="{{ route('login') }}"><i class="fa fa-shopping-cart"></i> Login</a>
+                                        <li><a href="{{ route('logins') }}"><i class="fa fa-shopping-cart"></i> Login</a>
                                         </li>
                                     @endif
                                 </ul>

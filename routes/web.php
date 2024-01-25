@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
-
+// use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +14,75 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get('/Frontend/app', function () {
+    return view('Frontend.layouts.app');
+});
+Route::get('/Frontend/login', function () {
+    return view('Frontend.user.login');
+});
+Route::get('/Frontend/register', function () {
+    return view('Frontend.user.register');
+    
+});
+
+// Route::get('/Frontend/blog', function () {
+//     return view('Frontend.user.blog');
+    
+// });
+Route::get('/Frontend/blog/{{id}}', function () {
+    return view('Frontend.user.blog-detail');
+    
+});
+Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index'])->name("index");
+Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create'])->name("rg");
+Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("logins");
+Route::get('/Frontend/logout', [App\Http\Controllers\Frontend\UserController::class, 'logout'])->name("logouts");
+
+
+
+
+
+
+
+
+Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index']);
+Route::get('/Frontend/blog/{id}', [App\Http\Controllers\Frontend\BlogController::class, 'blog_detail']);
+Route::post('/Frontend/blog/rate', [App\Http\Controllers\Frontend\BlogController::class, 'rate'])->name("rate");
+Route::get('/Frontend/blog/getRate', [App\Http\Controllers\Frontend\BlogController::class, 'getrate'])->name("getRate");
+//blog comment
+Route::post('/Frontend/blog/BlogComment', [App\Http\Controllers\Frontend\BlogController::class, 'blog_comment'])->name("cmt");
+
+
+
+
+
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/admin/update', [App\Http\Controllers\Admin\UserController::class, 'update']);
+
+
+
+
+
+
+
+
+Route::get('/Frontend/account/profile', [App\Http\Controllers\Frontend\MemberController::class, 'index']);
+Route::post('/Frontend/account/profile', [App\Http\Controllers\Frontend\MemberController::class, 'update']);
+
+
+
+
+Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\ProductController::class, 'index']);
+Route::get('/Frontend/account/add', [App\Http\Controllers\Frontend\ProductController::class, 'create']);
+Route::post('/Frontend/account/add', [App\Http\Controllers\Frontend\ProductController::class, 'store']);
+
+
+Route::get('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'edit']);
 
 
 
@@ -77,80 +146,8 @@ Route::get('/admin/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController
 
 
 
-
-
-
-
-
-
-
-
-
-Route::get('/Frontend/app', function () {
-    return view('Frontend.layouts.app');
-});
-Route::get('/Frontend/login', function () {
-    return view('Frontend.user.login');
-});
-Route::get('/Frontend/register', function () {
-    return view('Frontend.user.register');
-    
-});
-
-// Route::get('/Frontend/blog', function () {
-//     return view('Frontend.user.blog');
-    
-// });
-Route::get('/Frontend/blog/{{id}}', function () {
-    return view('Frontend.user.blog-detail');
-    
-});
-Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index'])->name("index");
-Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create'])->name("rg");
-Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("logins");
-Route::get('/Frontend/logout', [App\Http\Controllers\Frontend\UserController::class, 'logout'])->name("logout");
-
-
-
-
-
-
-
-
-Route::get('/Frontend/blog', [App\Http\Controllers\Frontend\BlogController::class, 'index']);
-Route::get('/Frontend/blog/{id}', [App\Http\Controllers\Frontend\BlogController::class, 'blog_detail']);
-Route::post('/Frontend/blog/rate', [App\Http\Controllers\Frontend\BlogController::class, 'rate'])->name("rate");
-Route::get('/Frontend/blog/getRate', [App\Http\Controllers\Frontend\BlogController::class, 'getrate'])->name("getRate");
-//blog comment
-Route::post('/Frontend/blog/BlogComment', [App\Http\Controllers\Frontend\BlogController::class, 'blog_comment'])->name("cmt");
-
-
-
-
-
-
-
 Route::get('/admin/profile', [App\Http\Controllers\Admin\UserController::class, 'show']);
 Route::post('/admin/profile', [App\Http\Controllers\Admin\UserController::class, 'update']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/admin/update', [App\Http\Controllers\Admin\UserController::class, 'update']);
-
-
-
-
-
-
-
-
-Route::get('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'index'])->name("fr.account");
-Route::post('/Frontend/account', [App\Http\Controllers\Frontend\MemberController::class, 'update'])->name("fr.account.post");
-
-
-
-
-Route::get('/Frontend/account/my-product', [App\Http\Controllers\Frontend\ProductController::class, 'index']);
-Route::get('/Frontend/account/my-product/add', [App\Http\Controllers\Frontend\ProductController::class, 'create']);
-Route::post('/Frontend/account/my-product/add', [App\Http\Controllers\Frontend\ProductController::class, 'store']);
 
 
 
@@ -168,4 +165,15 @@ Route::post('/Frontend/account/my-product/add', [App\Http\Controllers\Frontend\P
 
 
 
+
+
+
+
+
+
+
+// Route::get('/test-image', function () {
+//     $image = Image::make(public_path(''));
+//     return $image->response();
+// });
 

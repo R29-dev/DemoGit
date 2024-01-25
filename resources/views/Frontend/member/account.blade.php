@@ -10,7 +10,6 @@
                 @error('name')
                     <p>{{ $message }}</p>
                 @enderror
-                
                 <input type="email" disabled placeholder="Email Address" name="email" value="{{ $data['email'] }}" />
                 <input type="password" placeholder="Password" name="password" value="{{ $data['password'] }}" />
                 <input type="number" placeholder="phone" name="phone" value="{{ $data['phone'] }}" />

@@ -33,12 +33,12 @@
                     <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                 </ul>
                 <!-- <span>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                    </span> -->
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </span> -->
             </div>
             <a href="">
                 <img src="{{ asset('/upload/blog/image/' . $data['Image']) }}" alt="">
@@ -83,23 +83,23 @@
     </div><!--/socials-share-->
 
     <!-- <div class="media commnets">
-                                            <a class="pull-left" href="#">
-                                                <img class="media-object" src="images/blog/man-one.jpg" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Annie Davis</h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <div class="blog-socials">
-                                                    <ul>
-                                                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                        <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                                    </ul>
-                                                    <a class="btn btn-primary" href="">Other Posts</a>
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object" src="images/blog/man-one.jpg" alt="">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">Annie Davis</h4>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                    <div class="blog-socials">
+                                                        <ul>
+                                                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-dribbble"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                                        </ul>
+                                                        <a class="btn btn-primary" href="">Other Posts</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div> --><!--Comments-->
+                                            </div> --><!--Comments-->
     <div class="response-area">
         <h2>3 RESPONSES</h2>
         <ul class="media-list">
@@ -109,7 +109,8 @@
                 @if ($item['level'] == 0)
                     <li class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" style="width: 100px;" src="{{ asset('/upload/user/avatar' . $item['avatar']) }}" alt="">
+                            <img class="media-object" style="width: 100px;"
+                                src="{{ asset('/upload/user/avatar' . $item['avatar']) }}" alt="">
                         </a>
                         <div class="media-body">
                             <ul class="sinlge-post-meta">
@@ -126,15 +127,16 @@
                                     @if ($item1['level'] == $item['id'])
                                         <li class="media second-media">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object" style="width: 100px;" src="{{ asset('/upload/user/avatar' . $item['avatar']) }}"
+                                                <img class="media-object" style="width: 100px;"
+                                                    src="{{ asset('/upload/user/avatar' . $item['avatar']) }}"
                                                     alt="">
                                             </a>
                                             <div class="media-body">
                                                 <ul class="sinlge-post-meta">
                                                     <li><i class="fa fa-user"></i>{{ $item1['name'] }}</li>
                                                     <li><i class="fa fa-clock-o"></i>{{ $item1['created_at'] }}</li>
-                                                    <li><i class="fa fa-calendar"></i> {{ $item['created_at'] }}</li>
-                                                </ul>
+                                 0                   <li><i class="fa fa-calendar"></i> {{ $item['created_at'] }}</li>
+                                  .              </ul>
                                                 <p>{{ $item1['cmt'] }}</p>
                                                 <a class="btn btn-primary" id="{{ $item['id'] }}" href=""><i
                                                         class="fa fa-reply"></i>Replay</a>
@@ -238,7 +240,7 @@
                                 id_blog: "{{ $data['id'] }}",
                                 id_user: "{{ Auth::id() }}",
                                 avatar: "{{ Auth::check() ? Auth::user()->avatar : 'default-avatar.png' }}",
-                                name: "{{  Auth::check() ? Auth::user()->name : 'Guest' }}",
+                                name: "{{ Auth::check() ? Auth::user()->name : 'Guest' }}",
 
                                 level: level
                             },
