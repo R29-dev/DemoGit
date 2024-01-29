@@ -83,6 +83,7 @@ Route::post('/Frontend/account/add', [App\Http\Controllers\Frontend\ProductContr
 
 
 Route::get('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'edit']);
+Route::post('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'update']);
 
 
 
