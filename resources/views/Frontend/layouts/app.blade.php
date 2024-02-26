@@ -36,12 +36,18 @@
 
 
     @include('Frontend.layouts.header')
-
+    
+   
+    @if (Str::contains(request()->path(), 'index'))
+    @include('Frontend.layouts.slider')
+    @endif
+    
    
 
     <section>
         <div class="container">
             <div class="row">
+            
                 
                  
                
@@ -88,7 +94,7 @@
 
 
 
-                var product = {}
+                var product = {};
                 var obj = {};
 
 
@@ -99,7 +105,7 @@
                 }
 
                 var index = $(this).closest(".single-products").find(".text-center").attr("id")
-                console.log(index)
+                // console.log(index)
                 var name = $(this).closest(".single-products").find(".text-center").find("p").text();
                 var price = $(this).closest(".single-products").find(".text-center").find("h2").text();
                 var img = $(this).closest(".single-products").find(".text-center").find("img").attr("src");

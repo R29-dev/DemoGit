@@ -185,6 +185,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        product::destroy($id);
+        return redirect('Frontend/account/my-product')->with('success', ('success.'));
     }
+
+    public function getproductdetail(){
+        $product= product::all()->toArray();
+        $brand = brand::all()->toArray();
+    // dd($brand);
+        return view('Frontend.product.my-product-detail', compact('product','brand'));
+   }
+   
 }

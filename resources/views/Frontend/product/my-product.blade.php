@@ -39,7 +39,7 @@
 
                         </td>
                         <td class="delete">
-                            <a class="" href=""><i class="m-r-10 mdi mdi-grease-pencil"></i> Delete</a>
+                            <a class="" href="{{  url('/Frontend/account/delete/'.$item['id'])  }}"><i class="m-r-10 mdi mdi-grease-pencil"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach

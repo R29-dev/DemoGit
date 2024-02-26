@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\Models\User;
-
+use App\Models\product;
+use App\Models\brand;
 
 class UserController extends Controller
 {
@@ -25,7 +26,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view("Frontend.home.index");
+        $products = product::all()->toArray();
+        // foreach ($products as $key => $item) {
+        //     $item['hinhanh'] = json_decode($item['hinhanh'], true);
+        //     $products[$key] = $item; // Update the item in the array
+        // }
+       
+
+        // dd($products);
+        return view("Frontend.home.index", compact('products'));
     }
 
     /**
@@ -78,9 +87,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+       
     }
 
     /**
@@ -106,4 +115,10 @@ class UserController extends Controller
     {
         //
     }
+    public function getproductdetail(){
+        $product= product::all()->toArray();
+        $brand = brand::all()->toArray();
+    // dd($brand);
+        return view('Frontend.product.my-product-detail', compact('product','brand'));
+   }
 }

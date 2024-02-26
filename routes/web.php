@@ -84,6 +84,28 @@ Route::post('/Frontend/account/add', [App\Http\Controllers\Frontend\ProductContr
 
 Route::get('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'edit']);
 Route::post('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'update']);
+Route::get('Frontend/account/delete/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'destroy']);
+
+
+Route::get('Frontend/account/my-product-detail', [App\Http\Controllers\Frontend\ProductController::class, 'getproductdetail']);
+
+
+
+
+Route::post('Frontend/cart/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addtocart'])->name('addtocart');
+
+
+Route::get('Frontend/cart', [App\Http\Controllers\Frontend\CartController::class, 'index'])->name('cart');
+Route::post('Frontend/cart/update', [App\Http\Controllers\Frontend\CartController::class, 'update'])->name('updatecart');
+Route::post('Frontend/cart/delete', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct'])->name('deleteproduct');
+
+
+
+
+
+
+
+
 
 
 
