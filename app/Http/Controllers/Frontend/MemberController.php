@@ -15,9 +15,9 @@ class MemberController extends Controller
      * Display a listing of the resource.
      */
 
-    // public function __construct(){
-    //   $this->middleware('checklogin1');
-    // }
+    public function __construct(){
+      $this->middleware('checklogin1');
+    }
     public function index()
     {
         // echo 111;

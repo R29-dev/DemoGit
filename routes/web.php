@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\MailController;
 use Illuminate\Support\Facades\Route;
 // use Intervention\Image\Facades\Image;
 /*
@@ -97,7 +98,12 @@ Route::post('Frontend/cart/addtocart', [App\Http\Controllers\Frontend\CartContro
 
 Route::get('Frontend/cart', [App\Http\Controllers\Frontend\CartController::class, 'index'])->name('cart');
 Route::post('Frontend/cart/update', [App\Http\Controllers\Frontend\CartController::class, 'update'])->name('updatecart');
+
 Route::post('Frontend/cart/delete', [App\Http\Controllers\Frontend\CartController::class, 'deleteProduct'])->name('deleteproduct');
+Route::get('Frontend/cart/checkout', [App\Http\Controllers\Frontend\CartController::class, 'checkout'])->name('checkout');
+
+
+Route::get('/test',[MailController::class, 'index'])->name('test');
 
 
 

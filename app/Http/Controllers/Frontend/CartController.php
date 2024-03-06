@@ -14,7 +14,9 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-
+    public function __construct(){
+        $this->middleware('checklogin1');
+      }
     public function addToCart(Request $request)
     {
         $id = $request->id;
@@ -88,6 +90,13 @@ class CartController extends Controller
         }
     }
 
+
+
+    public function checkout(){
+
+        return view('Frontend.cart.checkout');
+
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -14,11 +14,15 @@
             </thead>
             <tbody>
                 @if (!empty(session('giohang')))
+                    @php
+                        $totalPrice = 0;
+                    @endphp
                     @foreach (session('giohang') as $product)
                         @php
                             $price = str_replace("$", '', $product['price']);
                             $price = (float) $price;
-                            $totalPrice = $price * $product['qty'];
+                            $subtotal = $price * $product['qty'];
+                            $totalPrice += $subtotal; // Thay đổi ở đây
                             $imagesArray = json_decode($product['hinhanh'], true);
                             $firstImage = isset($imagesArray[0]) ? $imagesArray[0] : null;
 
@@ -47,7 +51,7 @@
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price" id="cart_total_{{ $product['id'] }}">{{ $totalPrice }}$</p>
+                                <p class="cart_total_price" id="cart_total_{{ $product['id'] }}">{{ $subtotal }}$</p>
                             </td>
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" data-product-id="{{ $product['id'] }}"><i
@@ -57,9 +61,12 @@
                         </tr>
                     @endforeach
                 @else
-                    <h3 style="color: #2B7CD3;">Không có sản phẩm nào</h3>
+                    <tr>
+                        <td colspan="6">
+                            <h3 style="color: #2B7CD3;">Không có sản phẩm nào</h3>
+                        </td>
+                    </tr>
                 @endif
-
 
 
             </tbody>
@@ -91,7 +98,7 @@
                 var currentQuantity = parseInt(quantityInput.val());
 
                 // Giảm số lượng đi 1, nhưng không được nhỏ hơn 1
-                var newQuantity = Math.max(currentQuantity - 1, 0 );
+                var newQuantity = Math.max(currentQuantity - 1, 1);
 
                 // Cập nhật giá trị trong ô input
                 quantityInput.val(newQuantity);
@@ -132,7 +139,7 @@
 
                     // Cập nhật giá trị total sau khi cập nhật giỏ hàng
                     updateTotal(productId, newQuantity);
-                   
+
                 },
                 error: function(xhr, status, error) {
                     console.error('Lỗi khi cập nhật giỏ hàng:', error);
@@ -144,18 +151,31 @@
             // Lấy giá trị price từ thẻ HTML
             var price = parseFloat($('#cart_total_' + productId).closest('tr').find('.cart_price p').text().replace('$',
                 ''));
-
             // Tính toán total mới
             var newTotal = price * newQuantity;
 
             // Cập nhật giá trị total trong thẻ HTML
             $('#cart_total_' + productId).text(newTotal + '$');
-
+            // Cập nhật tổng giá trị của toàn bộ giỏ hàng
+            updateCartTotal(); // Thêm dòng nàyF
             // Lưu giá trị total vào local storage (nếu cần)
             // localStorage.setItem('cart_total_' + productId, newTotal);
+           
+        }
+        function updateCartTotal() {
+            // Lấy tất cả các giá trị total và tính tổng
+            var totalValues = $('.cart_total_price').map(function() {
+                return parseFloat($(this).text().replace('$', ''));
+            }).get();
+
+            var cartTotal = totalValues.reduce(function(a, b) {
+                return a + b;
+            }, 0);
+
+            // Cập nhật giá trị tổng trong thẻ HTML
+            $('#cart-total').text(cartTotal + '$');
         }
 
-      
 
 
         $('.cart_quantity_delete').on('click', function() {
@@ -177,7 +197,7 @@
 
                     // Ẩn hoặc xóa phần tử sản phẩm trên màn hình
                     productRow.remove();
-                    
+
                     // Hoặc dùng để ẩn phần tử nếu bạn muốn giữ lại trong DOM
                     // productRow.hide();
                 },
@@ -257,10 +277,10 @@
                             <li>Cart Sub Total <span>$59</span></li>
                             <li>Eco Tax <span>$2</span></li>
                             <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>$61</span></li>
+                            <li>Total <span  id="cart-total">$</span></li>
                         </ul>
                         <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
+                        <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
                     </div>
                 </div>
             </div>
