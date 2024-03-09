@@ -78,7 +78,10 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     {{-- <input type="hidden" name="id" id="" value="{{ $item['id'] }}"> --}}
-                                    <img src="{{ asset('/upload/product/' . $items[0]) }}" alt="" />
+                                    @if(isset($item[0]))
+                                    <img src="{{ asset('/upload/product/' . $item[0]) }}" alt="" />
+                                @endif
+                                
                                     <h2>{{ $item['price'] }}$</h2>
                                     <p>{{ $item['name'] }}</p>
                                     <a href="" class="btn btn-default add-to-cart"><i
