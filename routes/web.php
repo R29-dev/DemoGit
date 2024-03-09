@@ -3,6 +3,11 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\MailController;
 use Illuminate\Support\Facades\Route;
+
+
+if(App::environment('production')){
+    URL::forceScheme('https');
+}
 // use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
