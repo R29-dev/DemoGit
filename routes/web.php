@@ -41,6 +41,10 @@ Route::get('/Frontend/blog/{{id}}', function () {
     return view('Frontend.user.blog-detail');
     
 });
+Route::get('/', function () {
+    return redirect('/Frontend/index');
+});
+
 Route::get('/Frontend/index', [App\Http\Controllers\Frontend\UserController::class, 'index'])->name("index");
 Route::post('/Frontend/register', [App\Http\Controllers\Frontend\UserController::class, 'create'])->name("rg");
 Route::post('/Frontend/login', [App\Http\Controllers\Frontend\UserController::class, 'login'])->name("logins");
