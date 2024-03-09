@@ -179,6 +179,30 @@ class ProductController extends Controller
 
 
     }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        // Sử dụng SQL LIKE để tìm kiếm theo tên
+        $products = Product::where('name', 'like', '%' . $searchTerm . '%')->get();
+
+        return view('Frontend.product.search', compact('products', 'searchTerm'));
+    }
+
+    public function searchAdvanced(Request $request)
+    {
+        // Lấy dữ liệu từ request (nếu có)
+        $nameSearch = $request->input('name_search');
+
+        // Thực hiện truy vấn theo tên sản phẩm (hoặc các điều kiện tìm kiếm nâng cao khác)
+        $products = Product::where('name', 'like', "%$nameSearch%")->get();
+        $categories = collect(category::all());
+        $brands = collect(brand::all());
+
+
+        // Truyền dữ liệu tới view và hiển thị trang tìm kiếm
+        return view('Frontend.product.searchadvanced', compact('products', 'categories', 'brands'));
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -189,11 +213,12 @@ class ProductController extends Controller
         return redirect('Frontend/account/my-product')->with('success', ('success.'));
     }
 
-    public function getproductdetail(){
-        $product= product::all()->toArray();
+    public function getproductdetail()
+    {
+        $product = product::all()->toArray();
         $brand = brand::all()->toArray();
-    // dd($brand);
-        return view('Frontend.product.my-product-detail', compact('product','brand'));
-   }
-   
+        // dd($brand);
+        return view('Frontend.product.my-product-detail', compact('product', 'brand'));
+    }
+
 }

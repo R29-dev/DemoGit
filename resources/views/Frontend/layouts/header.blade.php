@@ -106,6 +106,7 @@
                                         <li><a href="{{ route('logins') }}"><i class="fa fa-shopping-cart"></i> Login</a>
                                         </li>
                                     @endif
+                                   
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -116,12 +117,16 @@
                             </li>
                             <li><a href="404.html">404</a></li>
                             <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="{{ route('searchadvanced') }}">Search advanced</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" />
+                        <form action="{{ route('search') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by name">
+                            <button type="submit">Search</button>
+                        </form>
                     </div>
                 </div>
             </div>

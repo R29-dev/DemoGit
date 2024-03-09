@@ -88,9 +88,11 @@ Route::post('/Frontend/account/edit/{id}', [App\Http\Controllers\Frontend\Produc
 Route::get('Frontend/account/delete/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'destroy']);
 
 
+Route::get('/search', [App\Http\Controllers\Frontend\ProductController::class, 'search'])->name('search');
+Route::get('/search-advanced', [App\Http\Controllers\Frontend\ProductController::class, 'searchadvanced'])->name('searchadvanced');
+
+
 Route::get('Frontend/account/my-product-detail', [App\Http\Controllers\Frontend\ProductController::class, 'getproductdetail']);
-
-
 
 
 Route::post('Frontend/cart/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addtocart'])->name('addtocart');
@@ -104,6 +106,8 @@ Route::get('Frontend/cart/checkout', [App\Http\Controllers\Frontend\CartControll
 
 
 Route::get('/test',[MailController::class, 'index'])->name('test');
+
+
 
 
 

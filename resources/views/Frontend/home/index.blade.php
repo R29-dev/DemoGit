@@ -79,7 +79,7 @@
                                 <div class="productinfo text-center">
                                     {{-- <input type="hidden" name="id" id="" value="{{ $item['id'] }}"> --}}
                                     <img src="{{ asset('/upload/product/' . $items[0]) }}" alt="" />
-                                    <h2>{{ $item['price'] }}</h2>
+                                    <h2>{{ $item['price'] }}$</h2>
                                     <p>{{ $item['name'] }}</p>
                                     <a href="" class="btn btn-default add-to-cart"><i
                                             class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -88,7 +88,7 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
 
-                                        <h2>{{ $item['price'] }}</h2>
+                                        <h2>{{ $item['price'] }}$</h2>
                                         <p>{{ $item['name'] }}</p>
                                         <a href="#" id="{{ $item['id'] }}" class="btn btn-default add-to-cart"><i
                                                 class="fa fa-shopping-cart"></i>Add to cart</a>
