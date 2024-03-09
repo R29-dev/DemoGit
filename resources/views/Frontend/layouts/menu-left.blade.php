@@ -131,8 +131,7 @@
                  <b>$ 0</b> <b class="pull-right">$ 600</b>
             </div>
         </div><!--/price-range-->
-        {{ asset('frontend/') }}
-
+        
         <div class="shipping text-center"><!--shipping-->
             <img src="        {{ asset('frontend/images/home/shipping.jpg') }}" alt="" />
         </div><!--/shipping-->

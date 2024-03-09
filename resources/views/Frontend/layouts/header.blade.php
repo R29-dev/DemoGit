@@ -43,7 +43,6 @@
                                 <li><a href="">UK</a></li>
                             </ul>
                         </div>
-
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 DOLLAR
