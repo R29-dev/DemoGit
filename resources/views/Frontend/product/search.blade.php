@@ -63,4 +63,27 @@
     </body>
 
     </html>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".add-to-cart").click(function() {
+                var getId = $(this).attr("id");
+            //   console.log(getId);
+                $.ajax({
+                    method: "POST",
+                    url: "{{ route('addtocart') }}",
+                    data: {
+                        id: getId,
+                        _token: "{{ csrf_token() }}",
+
+                        // Các dữ liệu khác có thể thêm vào đây nếu cần
+                    },
+                    success: function(res) {
+                        // Xử lý dữ liệu trả về từ server
+                        console.log(res);
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection
