@@ -14,7 +14,7 @@
             @error('email')
                 <p>{{ $message }}</p>
             @enderror
-            <input type="password" placeholder="Password" name="password" />
+            <input type="text" placeholder="Password" name="password" />
             @error('password')
                 <p>{{ $message }}</p>
             @enderror

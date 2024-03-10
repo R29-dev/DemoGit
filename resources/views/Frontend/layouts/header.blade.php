@@ -68,7 +68,9 @@
                         @else
                             <li><a href="{{ route('logins') }}"><i class="fa fa-shopping-cart"></i> Login</a>
                             </li>
+                            <li> <a href="{{ route('rg') }}"><i class="fa fa-shopping-cart"></i>Register</a></li>
                         @endif
+                            
                         </ul>
                     </div>
                 </div>
