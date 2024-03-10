@@ -1,2 +1,2 @@
+web: vendor/bin/heroku-php-apache2 public/
 
-web: heroku-php-nginx -F fpm_custom.conf public/
