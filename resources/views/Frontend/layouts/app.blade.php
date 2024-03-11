@@ -75,62 +75,7 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-
-
-            var ids = 0;
-
-            var mangCol4 = $(".text-center");
-            mangCol4.map((elementValue, arrayIndex) => {
-                $(arrayIndex).attr("id", ids);
-                ids++;
-            });
-
-            $(".add-to-cart").click(function() {
-
-
-
-
-
-                var product = {};
-                var obj = {};
-
-
-
-                var data = localStorage.getItem("formMang");
-                if (data) {
-                    obj = JSON.parse(data);
-                }
-
-                var index = $(this).closest(".single-products").find(".text-center").attr("id")
-                // console.log(index)
-                var name = $(this).closest(".single-products").find(".text-center").find("p").text();
-                var price = $(this).closest(".single-products").find(".text-center").find("h2").text();
-                var img = $(this).closest(".single-products").find(".text-center").find("img").attr("src");
-
-                product.ids = index;
-                product.name = name;
-                product.img = img;
-                product.price = price;
-                product.qual = 1;
-
-
-                Object.keys(obj).map(function(key, index) {
-                    if (obj[key].ids === product.ids) {
-                        product.qual = (+obj[key].qual) + product.qual;
-                    }
-
-                });
-
-                obj["product" + product.ids] = product;
-                var formMang = JSON.stringify(obj);
-                localStorage.setItem("formMang", formMang);
-
-            });
-        });
-    </script>
+   
 
     <script src="{{ asset('rate/js/jquery-1.9.1.min.js') }} "></script>
     @yield('jsRate')

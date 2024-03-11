@@ -212,13 +212,30 @@
                     // Ẩn hoặc xóa phần tử sản phẩm trên màn hình
                     productRow.remove();
 
-                    // Hoặc dùng để ẩn phần tử nếu bạn muốn giữ lại trong DOM
-                    // productRow.hide();
+                    // Xóa khỏi Local Storage
+                    localStorage.removeItem('cart_quantity_' + productId);
                 },
                 error: function(xhr, status, error) {
                     console.error('Lỗi khi xóa sản phẩm:', error);
                 }
             });
+
+            function updateCartAfterAdd(productId, newQuantity) {
+                // Lưu giá trị quantity vào Local Storage
+                saveQuantityToLocalStorage(productId, newQuantity);
+
+                // Cập nhật giá trị total sau khi cập nhật giỏ hàng
+                updateTotal(productId, newQuantity);
+
+                // Cập nhật tổng giá trị của toàn bộ giỏ hàng
+                updateCartTotal();
+
+                // Kiểm tra và cập nhật Local Storage dựa trên dữ liệu trên màn hình (nếu cần)
+                updateLocalStorageFromScreen();
+            }
+
+            // 
+
         });
     </script>
 

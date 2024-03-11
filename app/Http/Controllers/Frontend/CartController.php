@@ -23,6 +23,7 @@ class CartController extends Controller
         // dd($product);
         if (!Session::has('giohang')) {
             Session::put('giohang', []);
+        
         }
 
         // Kiểm tra xem sản phẩm với ID đã cho có trong giỏ hàng chưa
