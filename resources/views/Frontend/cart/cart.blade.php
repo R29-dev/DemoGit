@@ -75,6 +75,18 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Hàm cập nhật giỏ hàng sau khi thêm sản phẩm
+            function updateCartAfterAdd(productId, newQuantity) {
+                // Lưu giá trị quantity vào local storage
+                saveQuantityToLocalStorage(productId, newQuantity);
+
+                // Cập nhật giá trị total sau khi cập nhật giỏ hàng
+                updateTotal(productId, newQuantity);
+
+                // Cập nhật tổng giá trị của toàn bộ giỏ hàng
+                updateCartTotal();
+            }
+
             // Sự kiện khi click vào nút tăng số lượng
             $('.cart_quantity_up').on('click', function() {
                 var productId = $(this).data('product-id');
@@ -89,6 +101,9 @@
 
                 // Gọi hàm để cập nhật giỏ hàng qua Ajax
                 updateCart(productId, newQuantity);
+
+                // Gọi hàm cập nhật giỏ hàng sau khi thêm sản phẩm
+                updateCartAfterAdd(productId, newQuantity);
             });
 
             // Sự kiện khi click vào nút giảm số lượng
@@ -120,7 +135,14 @@
             });
         });
 
+        function removeQuantityFromLocalStorage(productId) {
+            localStorage.removeItem('cart_quantity_' + productId);
+        }
+
         function updateCart(productId, newQuantity) {
+            if (newQuantity === parseInt(localStorage.getItem('cart_quantity_' + productId))) {
+                return;
+            }
             // Gửi request Ajax đến Laravel Controller
             $.ajax({
                 url: '{{ route('updatecart') }}',
@@ -151,17 +173,18 @@
             // Lấy giá trị price từ thẻ HTML
             var price = parseFloat($('#cart_total_' + productId).closest('tr').find('.cart_price p').text().replace('$',
                 ''));
+
             // Tính toán total mới
             var newTotal = price * newQuantity;
 
             // Cập nhật giá trị total trong thẻ HTML
             $('#cart_total_' + productId).text(newTotal + '$');
+
             // Cập nhật tổng giá trị của toàn bộ giỏ hàng
-            updateCartTotal(); // Thêm dòng nàyF
-            // Lưu giá trị total vào local storage (nếu cần)
-            // localStorage.setItem('cart_total_' + productId, newTotal);
-           
+            updateCartTotal();
         }
+
+
         function updateCartTotal() {
             // Lấy tất cả các giá trị total và tính tổng
             var totalValues = $('.cart_total_price').map(function() {
@@ -175,6 +198,7 @@
             // Cập nhật giá trị tổng trong thẻ HTML
             $('#cart-total').text(cartTotal + '$');
         }
+
 
 
 
@@ -195,6 +219,7 @@
                 success: function(response) {
                     console.log('Sản phẩm đã được xóa thành công');
 
+                    removeQuantityFromLocalStorage(productId);
                     // Ẩn hoặc xóa phần tử sản phẩm trên màn hình
                     productRow.remove();
 
@@ -204,7 +229,33 @@
                 error: function(xhr, status, error) {
                     console.error('Lỗi khi xóa sản phẩm:', error);
                 }
+                
             });
+            function updateCartAfterAdd(productId, newQuantity) {
+    // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng hay chưa
+    var existingQuantity = parseInt(localStorage.getItem('cart_quantity_' + productId));
+
+    if (!isNaN(existingQuantity)) {
+        // Nếu sản phẩm đã tồn tại, cập nhật giá trị quantity trong Local Storage
+        newQuantity += existingQuantity;
+        saveQuantityToLocalStorage(productId, newQuantity);
+
+        // Cập nhật giá trị total sau khi cập nhật giỏ hàng
+        updateTotal(productId, newQuantity);
+
+        // Cập nhật tổng giá trị của toàn bộ giỏ hàng
+        updateCartTotal();
+    } else {
+        // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
+        // Gọi hàm để cập nhật giỏ hàng qua Ajax
+        updateCart(productId, newQuantity);
+
+        // Gọi hàm cập nhật giỏ hàng sau khi thêm sản phẩm
+        // (Nếu cần thêm logic khác khi thêm mới sản phẩm)
+        // updateCartAfterAdd(productId, newQuantity);
+    }
+}
+
         });
     </script>
 
@@ -277,7 +328,7 @@
                             <li>Cart Sub Total <span>$59</span></li>
                             <li>Eco Tax <span>$2</span></li>
                             <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span  id="cart-total">$</span></li>
+                            <li>Total <span id="cart-total">$</span></li>
                         </ul>
                         <a class="btn btn-default update" href="">Update</a>
                         <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
