@@ -193,6 +193,8 @@
 
 
         $('.cart_quantity_delete').on('click', function() {
+            localStorage.clear();
+
             var productId = $(this).data('product-id');
 
             // Lưu trữ phần tử sản phẩm để có thể xóa nó sau khi xóa thành công
