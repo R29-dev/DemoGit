@@ -26,5 +26,8 @@ class product extends Model
        'updated_at'
 
     ];
-
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
 }

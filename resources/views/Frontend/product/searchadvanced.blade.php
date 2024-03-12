@@ -25,8 +25,8 @@
                     <label for="price">Giá tiền</label>
                     <select name="price" class="form-control">
                         <option value="">Choose price</option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        <option value="0-1000">0-1000</option>
+                        <option value="1000-2000">1000-2000</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -44,7 +44,7 @@
                         <option value="">Brand</option>
                         @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                     @endforeach 
+                        @endforeach 
                     </select>
                 </div>
                 <div class="form-group">
@@ -57,6 +57,7 @@
                 </div>
                 <button type="submit" style="background-color: orange; color: white;" class="btn btn-default">Tìm kiếm</button>
             </form>
+            
 
             <div class="row">
                 @foreach ($products as $item)

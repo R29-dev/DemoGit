@@ -190,23 +190,41 @@ class ProductController extends Controller
     }
 
     public function searchAdvanced(Request $request)
-    {
-        // Lấy dữ liệu từ request (nếu có)
-        $nameSearch = $request->input('name_search');
+{
+    $query = Product::query();
+  
+    $categories = Category::all();
+    $brands = Brand::all();
 
-        // Thực hiện truy vấn theo tên sản phẩm (hoặc các điều kiện tìm kiếm nâng cao khác)
-        $products = Product::where('name', 'like', "%$nameSearch%")->get();
-        $categories = collect(category::all());
-        $brands = collect(brand::all());
-
-
-        // Truyền dữ liệu tới view và hiển thị trang tìm kiếm
-        return view('Frontend.product.searchadvanced', compact('products', 'categories', 'brands'));
+    if ($request->filled('name')) {
+        $query->where('name', 'like', '%' . $request->input('name') . '%');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    if ($request->filled('price')) {
+        $priceRange = explode('-', $request->input('price'));
+        $query->whereBetween('price', [$priceRange[0], $priceRange[1]]);
+    }
+
+    if ($request->filled('category')) {
+        $categoryId = $request->input('category');
+        $query->where('id_category', $categoryId);
+    }
+
+    if ($request->filled('brand')) {
+        $brandId = $request->input('brand');
+        $query->where('id_brand', $brandId);
+    }
+
+    if ($request->filled('status')) {
+        $query->where('status', $request->input('status'));
+    }
+
+    $products = $query->paginate(10);
+
+    return view('Frontend.product.searchadvanced', compact('products', 'categories', 'brands'));
+}
+
+    
     public function destroy(string $id)
     {
         product::destroy($id);
