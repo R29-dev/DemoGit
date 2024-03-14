@@ -100,6 +100,7 @@ Route::get('Frontend/account/delete/{id}', [App\Http\Controllers\Frontend\Produc
 Route::get('/search', [App\Http\Controllers\Frontend\ProductController::class, 'search'])->name('search');
 Route::get('/search-advanced', [App\Http\Controllers\Frontend\ProductController::class, 'searchadvanced'])->name('searchadvanced');
 
+Route::get('/searchprice', [App\Http\Controllers\Frontend\ProductController::class, 'searchprice'])->name('searchprice');
 
 Route::get('Frontend/account/my-product-detail', [App\Http\Controllers\Frontend\ProductController::class, 'getproductdetail']);
 
@@ -218,4 +219,3 @@ Route::post('/admin/profile', [App\Http\Controllers\Admin\UserController::class,
 //     $image = Image::make(public_path(''));
 //     return $image->response();
 // });
-

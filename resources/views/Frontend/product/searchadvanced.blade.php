@@ -59,13 +59,13 @@
             </form>
             
 
-            <div class="row">
+            <div class="row products">
                 @foreach ($products as $item)
                     @php
                         $images = json_decode($item['hinhanh'], true);
                         $firstImage = isset($images[0]) ? $images[0] : null;
                     @endphp
-
+            
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
@@ -73,15 +73,13 @@
                                     <img src="{{ asset('/upload/product/' . $firstImage) }}" alt="" />
                                     <h2>{{ $item['price'] }}</h2>
                                     <p>{{ $item['name'] }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>{{ $item['price'] }}</h2>
                                         <p>{{ $item['name'] }}</p>
-                                        <a href="#" id="{{ $item['id'] }}" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="#" id="{{ $item['id'] }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +93,7 @@
                     </div>
                 @endforeach
             </div>
+            
         </div>
     </div>
 @endsection

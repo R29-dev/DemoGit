@@ -1,4 +1,3 @@
-
 <div class="col-sm-3">
     <div class="left-sidebar">
         <h2>Category</h2>
@@ -50,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -108,7 +107,7 @@
                 </div>
             </div>
         </div><!--/category-products-->
-    
+
         <div class="brands_products"><!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">
@@ -123,17 +122,86 @@
                 </ul>
             </div>
         </div><!--/brands_products-->
-        
+
         <div class="price-range"><!--price-range-->
             <h2>Price Range</h2>
             <div class="well">
-                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                 <b>$ 0</b> <b class="pull-right">$ 6000</b>
+                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="2000"
+                    data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                <b>$ 0</b> <b class="pull-right">$ 2000</b>
             </div>
         </div><!--/price-range-->
-        
+
         <div class="shipping text-center"><!--shipping-->
             <img src="        {{ asset('frontend/images/home/shipping.jpg') }}" alt="" />
         </div><!--/shipping-->
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Lắng nghe sự kiện click của thanh trượt
+        $(".slider.slider-horizontal").on("click", function(clickEvt) {
+            // Lấy giá trị của phần tử tooltip-inner tương ứng với thanh trượt được click
+            var tooltipValue = $(".tooltip-inner").text();
+
+            // Tách giá trị thành mảng sử dụng dấu ":"
+            var values = tooltipValue.split(':');
+            var minPrice = parseInt(values[0].trim());
+            var maxPrice = parseInt(values[1].trim());
+            console.log(minPrice, maxPrice);
+            // Gửi giá trị minPrice và maxPrice đến server bằng AJAX
+            $.ajax({
+                url: '{{ route('searchprice') }}',
+                type: 'GET',
+                data: {
+                    minPrice: minPrice,
+                    maxPrice: maxPrice,
+
+                },
+                success: function(response) {
+                    // Xử lý kết quả từ server (nếu cần)
+                    console.log(response);
+                    $('.products').find('.col-sm-4').remove();
+                    var productsHtml = "";
+                    response.data.forEach(function(item) {
+                        var img = JSON.parse(item['hinhanh']);
+                        var firstImage = img[0] ? img[0] : "noimg";
+                        productsHtml += `
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="{{ asset('/upload/product/') }}/`+firstImage+`" alt="" />
+                            <h2>`+item['price']+`</h2>
+                            <p>`+item['name']+`</p>
+                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <h2>`+item['price']+`</h2>
+                            <p>`+item['name']+`</p>
+                                <a href="#" id="`+item['id']+`" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choose">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+                    });
+
+                    $('.products').append(productsHtml);
+
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>

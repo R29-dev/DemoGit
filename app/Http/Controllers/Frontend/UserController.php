@@ -24,18 +24,43 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $products = product::all()->toArray();
-        // foreach ($products as $key => $item) {
-        //     $item['hinhanh'] = json_decode($item['hinhanh'], true);
-        //     $products[$key] = $item; // Update the item in the array
-        // }
-       
+    // public function index(Request $request)
+    // {
+    //     // Kiểm tra xem minPrice và maxPrice có tồn tại không
+    //     if ($request->filled('minPrice') && $request->filled('maxPrice')) {
+    //         $minPrice = $request->minPrice;
+    //         $maxPrice = $request->maxPrice;
+    
+    //         // Truy vấn các sản phẩm trong khoảng giá minPrice và maxPrice
+    //         $products = Product::where('price', '>=', $minPrice)
+    //             ->where('price', '<=', $maxPrice)
+    //             ->get();
+    //     } else {
+    //         // Nếu không có minPrice và maxPrice, truy vấn tất cả các sản phẩm
+    //         $products = product::all()->toArray();
+        
+            
+    //     }
+    
+    //     // Trả về dữ liệu dưới dạng JSON
+    //     return response()->json(['data' => $products]);
+    // }
+        
+    
+public function index()
+{
+    $products = product::all()->toArray();
+   
+   
 
-        // dd($products);
-        return view("Frontend.home.index", compact('products'));
-    }
+    // dd($products);
+    return view("Frontend.home.index", compact('products'));
+}
+
+  
+
+    
+    
 
     /**
      * Show the form for creating a new resource.

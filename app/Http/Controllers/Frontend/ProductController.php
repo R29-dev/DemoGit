@@ -10,6 +10,8 @@ use App\Models\brand;
 use App\Http\Requests\ProductRequest;
 // use Intervention\Image\Facades\Image as ImageFacade; // Add this line
 use Image;
+use Illuminate\Support\Facades\Log;
+
 
 
 class ProductController extends Controller
@@ -189,42 +191,44 @@ class ProductController extends Controller
         return view('Frontend.product.search', compact('products', 'searchTerm'));
     }
 
-    public function searchAdvanced(Request $request)
-{
-    $query = Product::query();
-  
-    $categories = Category::all();
-    $brands = Brand::all();
+    public function searchadvanced(Request $request)
+    {
+        $query = Product::query();
 
-    if ($request->filled('name')) {
-        $query->where('name', 'like', '%' . $request->input('name') . '%');
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->filled('price')) {
+            // Tìm kiếm theo khoảng giá nếu chỉ có một giá trị duy nhất
+            $priceRange = explode('-', $request->input('price'));
+            $query->whereBetween('price', [$priceRange[0], $priceRange[1]]);
+        }
+
+        if ($request->filled('category')) {
+            $categoryId = $request->input('category');
+            $query->where('id_category', $categoryId);
+        }
+
+        if ($request->filled('brand')) {
+            $brandId = $request->input('brand');
+            $query->where('id_brand', $brandId);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        $products = $query->paginate(10);
+
+        return view('Frontend.product.searchadvanced', compact('products', 'categories', 'brands'));
     }
 
-    if ($request->filled('price')) {
-        $priceRange = explode('-', $request->input('price'));
-        $query->whereBetween('price', [$priceRange[0], $priceRange[1]]);
-    }
 
-    if ($request->filled('category')) {
-        $categoryId = $request->input('category');
-        $query->where('id_category', $categoryId);
-    }
 
-    if ($request->filled('brand')) {
-        $brandId = $request->input('brand');
-        $query->where('id_brand', $brandId);
-    }
-
-    if ($request->filled('status')) {
-        $query->where('status', $request->input('status'));
-    }
-
-    $products = $query->paginate(10);
-
-    return view('Frontend.product.searchadvanced', compact('products', 'categories', 'brands'));
-}
-
-    
     public function destroy(string $id)
     {
         product::destroy($id);
@@ -238,5 +242,14 @@ class ProductController extends Controller
         // dd($brand);
         return view('Frontend.product.my-product-detail', compact('product', 'brand'));
     }
-
+    public function searchprice(request $request)
+    {
+      
+        $minPrice = $request->minPrice;
+        $maxPrice = $request->maxPrice;
+        $products = Product::where('price', '>=', $minPrice)
+            ->where('price', '<=', $maxPrice)
+            ->get();
+            return response()->json(['data' => $products]); 
+    }
 }
